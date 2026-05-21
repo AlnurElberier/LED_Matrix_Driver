@@ -106,7 +106,7 @@ int main(void)
   /* Initialize the HUB75 Matrix Driver (Starts data streams and Timer 2 Interrupts) */
   HUB75_Init();
 
-  const char *line_header  = "C LINE";
+  const char *line_header  = "CLine";
   const char *arrival_times = "03m   08m   14m   22m   35m";
 
   /* Horizontal movement tracker for the 3x5 text marquee */
@@ -130,10 +130,10 @@ int main(void)
 
 	  /* 2. Top Half (y = 0): Static subway line identifier using 5x7 Font */
 	  /* Center string horizontally on the 32px screen by indenting 2 pixels */
-	  HUB75_DrawString5x7(2, 0, line_header, 255, 40, 0); // Iconic transit amber-orange
+	  HUB75_DrawString5x7(0, 0, line_header, 255, 40, 0); // Iconic transit amber-orange
 
 	  /* 3. Bottom Half (y = 9): Smooth scrolling arrivals using 3x5 Font */
-	  HUB75_ScrollString3x5(scroll_x, 9, arrival_times, 0, 240, 60); // Clean commuter green
+	  HUB75_ScrollString5x7(scroll_x, 9, arrival_times, 0, 240, 60); // Clean commuter green
 
 	  /* 4. Swap buffers to push the frame atomically onto the display matrix */
 	  HUB75_SwapBuffers();
@@ -147,7 +147,7 @@ int main(void)
 	  }
 
 	  /* 7. Stabilize layout rendering engine frame rate (~30 FPS) */
-	  HAL_Delay(33);
+	  HAL_Delay(50);
 }
   /* USER CODE END 3 */
 }
